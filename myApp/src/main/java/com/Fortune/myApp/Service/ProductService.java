@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.Fortune.myApp.Model.Product;
 
@@ -28,8 +29,26 @@ public class ProductService {
         .findFirst().get();
     }
 
-    public void addProduct(Product prod){
+    public void addProduct(@RequestBody Product prod){
         products.add(prod);
 
     }
+
+    
+    public void updateProducts(@RequestBody Product prod) {
+       int index = 0;
+
+       for(int i=0;i <products.size();i++){
+            if(products.get(i).getProdId() == prod.getProdId()){
+                index  = i;
+
+                products.set(index, prod);
+            }
+       }
+    }
+
+    public void deleteProducts(int prodId) {
+        products.removeIf(p -> p.getProdId() == prodId);
+    }
+    
 }
