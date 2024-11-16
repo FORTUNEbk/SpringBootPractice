@@ -9,7 +9,7 @@ public class productController {
 
  @RequestMapping("/")
 public String greet(){
-    return "Hello world";
+    return "Hello their this is my new app";
 }
     
 }
